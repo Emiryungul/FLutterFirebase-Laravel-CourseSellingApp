@@ -3,4 +3,5 @@ class RoutesNames{
   static const String SING_IN = "/SignIn";
   static const String REGISTER = "/register";
   static const String APPLICATION = "/navbar";
+  static const String HOME = "/home";
 }

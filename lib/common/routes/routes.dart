@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpodapp/Pages/Application/NavBarPage/NavBarPage.dart';
+import 'package:riverpodapp/Pages/Home/home_page.dart';
 import 'package:riverpodapp/Pages/Register_page/sign_up_page.dart';
 import 'package:riverpodapp/Pages/Sign_in/sign_in_page.dart';
 import 'package:riverpodapp/Pages/Welcome/EntrancePage.dart';
@@ -14,6 +15,7 @@ class AppPages {
       RouteEntity(path: RoutesNames.SING_IN, page: const SignInPage()),
       RouteEntity(path: RoutesNames.REGISTER, page: const SignUp()),
       RouteEntity(path: RoutesNames.APPLICATION, page: const NavBarPage()),
+      RouteEntity(path: RoutesNames.HOME, page: const HomePage()),
     ];
   }
 

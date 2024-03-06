@@ -15,8 +15,7 @@ class NavBarPage extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     int index= ref.watch(applicationNavIndexProvider);
     return Scaffold(
-      appBar: myAppbar(title: "Pages Start"),
-      body: Container(),
+      body: appScreens(index: index),
       bottomNavigationBar: Container(
         width: 340.w,
         height: 55.h,

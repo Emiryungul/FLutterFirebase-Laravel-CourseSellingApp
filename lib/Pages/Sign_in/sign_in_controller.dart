@@ -6,6 +6,7 @@ import 'package:riverpodapp/Pages/Sign_in/notifier/sign_in_notifier.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpodapp/common/entities/entities.dart';
 import 'package:riverpodapp/common/global_loader/global_loader.dart';
+import 'package:riverpodapp/main.dart';
 import '../../common/Widgets/toast_messages.dart';
 import '../../common/utils/constants.dart';
 import '../../global.dart';
@@ -99,12 +100,12 @@ class SignInController {
 
     //have local storage
     try{
-      var navigator = Navigator.of(ref.context);
+      //var navigator = Navigator.of(ref.context);
       //try to remember user info
       Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, "123");
       Global.storageService.setString(AppConstants.STORAGE_USER_TOKEN_KEY, "123456");
 
-       navigator.pushNamedAndRemoveUntil("/navbar", (route) => false);
+       navKey.currentState?.pushNamedAndRemoveUntil("/navbar", (route) => false);
 
     }catch(e){
       if (kDebugMode) {

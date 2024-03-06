@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:riverpodapp/Pages/Application/NavBarPage/NavBarPage.dart';
-import 'package:riverpodapp/Pages/Register_page/sign_up_page.dart';
-import 'package:riverpodapp/Pages/Sign_in/sign_in_page.dart';
-import 'package:riverpodapp/Pages/Welcome/EntrancePage.dart';
 import 'package:riverpodapp/common/utils/app_styles.dart';
 import 'common/routes/routes.dart';
 import 'global.dart';
@@ -13,12 +9,7 @@ Future<void> main() async {
   await Global.init();
   runApp(const ProviderScope(child: MyApp()));
 }
-var routesMap= {
-  "/":(context)=>EntrancePage(),
-  "/signIn":(context)=>const SignInPage(),
-  "/register":(context)=>const SignUp(),
-  "/application":(context)=>const NavBarPage()
-};
+final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -30,6 +21,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           builder: (context, child) => MaterialApp(
             debugShowCheckedModeBanner: false,
+            navigatorKey: navKey,
             title: 'Flutter Demo',
             theme: Apptheme.appThemeData,
             //initialRoute: "/",

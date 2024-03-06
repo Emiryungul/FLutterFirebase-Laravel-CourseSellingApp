@@ -27,7 +27,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     super.initState();
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context ) {
     final signInProvider = ref.watch(signInNotifierProvider);
     final loader = ref.watch(appLoaderProvider);
     print(signInProvider.email);
