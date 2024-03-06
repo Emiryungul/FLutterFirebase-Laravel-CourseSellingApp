@@ -12,29 +12,30 @@ var bottomTabs = <BottomNavigationBarItem>[
       label: "Home",
   ),
   BottomNavigationBarItem(
-    icon: _bottomContainer(),
-    activeIcon:_bottomContainer(color: AppColors.primaryElement),
-    backgroundColor: AppColors.primaryBackground,
-    label: "Home",
-  ),
-  BottomNavigationBarItem(
-    icon: _bottomContainer(),
-    activeIcon:_bottomContainer(color: AppColors.primaryElement),
-    backgroundColor: AppColors.primaryBackground,
-    label: "Home",
-  ),
-  BottomNavigationBarItem(
-    icon: _bottomContainer(),
-    activeIcon:_bottomContainer(color: AppColors.primaryElement),
-    backgroundColor: AppColors.primaryBackground,
-    label: "Home",
-  ),
-  BottomNavigationBarItem(
-    icon: _bottomContainer(),
-    activeIcon:_bottomContainer(color: AppColors.primaryElement),
+    icon: _bottomContainer(imagePath: "assets/icons/search2.png"),
+    activeIcon:_bottomContainer(imagePath: "assets/icons/search2.png",color: AppColors.primaryElement),
     backgroundColor: AppColors.primaryBackground,
     label: "search",
   ),
+  BottomNavigationBarItem(
+    icon: _bottomContainer(imagePath: "assets/icons/play-circle1.png"),
+    activeIcon:_bottomContainer(imagePath: "assets/icons/play-circle1.png",color: AppColors.primaryElement),
+    backgroundColor: AppColors.primaryBackground,
+    label: "video",
+  ),
+  BottomNavigationBarItem(
+    icon: _bottomContainer(imagePath: "assets/icons/message-circle.png"),
+    activeIcon:_bottomContainer(imagePath:"assets/icons/message-circle.png" ,color: AppColors.primaryElement),
+    backgroundColor: AppColors.primaryBackground,
+    label: "message",
+  ),
+  BottomNavigationBarItem(
+    icon: _bottomContainer(imagePath: "assets/icons/person2.png"),
+    activeIcon:_bottomContainer(imagePath:"assets/icons/person2.png" ,color: AppColors.primaryElement),
+    backgroundColor: AppColors.primaryBackground,
+    label: "Profile",
+  ),
+
 
 ];
 
@@ -44,8 +45,8 @@ Widget _bottomContainer(
       String imagePath = "assets/icons/home.png",
       Color color = AppColors.primaryElement}) {
   return SizedBox(
-    width: 15.w,
-    height: 15.w,
+    width: width.w,
+    height: height.h,
     child: Image.asset(imagePath,color: color,)
 
   );

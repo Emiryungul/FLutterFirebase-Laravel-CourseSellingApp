@@ -20,10 +20,11 @@ class NavBarPage extends ConsumerWidget {
       bottomNavigationBar: Container(
         width: 340.w,
         height: 55.h,
-        decoration: appShadowBox(color: Colors.black, border: Border()),
+        decoration: appShadowBox(color: Colors.black, border: const Border()),
         child: BottomNavigationBar(
           items: bottomTabs,
           elevation: 1,
+          currentIndex:  index,
           onTap: (value){
             ref.read(applicationNavIndexProvider.notifier).changeIndex(value);
           },

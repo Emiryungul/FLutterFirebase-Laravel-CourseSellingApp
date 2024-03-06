@@ -10,7 +10,7 @@ import 'package:riverpodapp/global.dart';
 class AppPages {
   static List<RouteEntity> routes() {
     return [
-      RouteEntity(path:RoutesNames.WELCOME, page:EntrancePage()),
+      RouteEntity(path: RoutesNames.WELCOME, page:EntrancePage()),
       RouteEntity(path: RoutesNames.SING_IN, page: const SignInPage()),
       RouteEntity(path: RoutesNames.REGISTER, page: const SignUp()),
       RouteEntity(path: RoutesNames.APPLICATION, page: const NavBarPage()),
