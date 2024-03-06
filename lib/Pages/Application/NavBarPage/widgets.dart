@@ -16,7 +16,7 @@ var bottomTabs = <BottomNavigationBarItem>[
     icon: _bottomContainer(imagePath: "assets/icons/search2.png"),
     activeIcon:_bottomContainer(imagePath: "assets/icons/search2.png",color: AppColors.primaryElement),
     backgroundColor: AppColors.primaryBackground,
-    label: "search",
+    label: "search" ,
   ),
   BottomNavigationBarItem(
     icon: _bottomContainer(imagePath: "assets/icons/play-circle1.png"),
@@ -55,7 +55,6 @@ Widget _bottomContainer(
 Widget appScreens({int index=0}){
   List<Widget> screens=[
     const HomePage(),
-    Center(child: _bottomContainer() ),
     Center(child: _bottomContainer() ),
     Center(child: _bottomContainer() ),
     Center(child: _bottomContainer() ),
