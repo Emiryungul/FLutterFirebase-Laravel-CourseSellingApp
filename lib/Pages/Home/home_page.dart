@@ -1,6 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:riverpodapp/Pages/Sign_in/sign_in_widgets.dart';
+import 'package:riverpodapp/common/Widgets/text_widgets.dart';
+import 'package:riverpodapp/common/utils/constants.dart';
+import 'package:riverpodapp/global.dart';
+
+import '../../common/Widgets/search_bar_widget.dart';
+import 'home_widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,6 +15,23 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: myAppbar(title: "Home Page",),
+      body: Padding(
+        padding: EdgeInsets.only(left: 25.w,right: 25.w
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              helloText(),
+              nameText(),
+              SizedBox(height: 15.h,),
+              searchBar()
+
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

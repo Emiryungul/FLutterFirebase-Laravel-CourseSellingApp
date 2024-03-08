@@ -79,40 +79,59 @@ Widget appTextField(
               Image.asset(iconName),
 
               //our text field
-              SizedBox(
-                width: 275.w,
-                height: 40.h,
-                child: TextField(
-                  controller: textEditingController,
-                  keyboardType: TextInputType.multiline,
-                  keyboardAppearance: null,
-
-                  decoration: InputDecoration(
-                    hintText: hintText,
-                    hintStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.normal,),
-
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent)),
-                    //default border without any input
-                    enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent)),
-                    //focused border is with input
-                    focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent)),
-                    disabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent)),
-                  ),
-                  onChanged: (value)=>func!(value),
-                  maxLines: 1,
-                  autocorrect: false,
+              sizedbox(
+                  textEditingController: textEditingController,
                   obscureText: obscureText,
-                  autofocus: false,
-                ),
+                  hintText: hintText,
+                  func: func
               )
             ],
           ),
         )
       ],
+    ),
+  );
+}
+
+
+Widget sizedbox({
+  TextEditingController? textEditingController,
+  String text = "",
+  String iconName = "",
+  String hintText = "Type in your info",
+  bool obscureText = false,
+  void Function(String value)? func,
+   double width = 280,
+   double heigth = 50
+}){
+  return SizedBox(
+    width: width.w,
+    height: heigth.h,
+    child: TextField(
+      controller: textEditingController,
+      keyboardType: TextInputType.multiline,
+      keyboardAppearance: null,
+
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.normal,),
+
+        border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        //default border without any input
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        //focused border is with input
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        disabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+      ),
+      onChanged: (value)=>func!(value),
+      maxLines: 1,
+      autocorrect: false,
+      obscureText: obscureText,
+      autofocus: false,
     ),
   );
 }

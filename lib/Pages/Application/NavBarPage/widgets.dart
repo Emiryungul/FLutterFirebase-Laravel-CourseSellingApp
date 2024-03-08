@@ -58,6 +58,7 @@ Widget appScreens({int index=0}){
     Center(child: _bottomContainer() ),
     Center(child: _bottomContainer() ),
     Center(child: _bottomContainer() ),
+    Center(child: _bottomContainer() ),
   ];
   return screens[index];
 }

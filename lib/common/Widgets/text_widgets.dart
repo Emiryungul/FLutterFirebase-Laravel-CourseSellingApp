@@ -33,6 +33,20 @@ Widget text16Widget({required String text,required FontWeight fontWeight,require
   );
 
 }
+Widget text9Widget({required String text,required FontWeight fontWeight,required Color textColor}){
+  return Text
+
+    (
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle
+        (fontSize: 9,
+        color: textColor,
+        fontWeight: fontWeight,
+      )
+  );
+
+}
 Widget textUnderline({String text="Forgot Password ?"}){
   return GestureDetector(
     onTap: (){
