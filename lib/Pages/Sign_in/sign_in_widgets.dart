@@ -113,6 +113,7 @@ Widget sizedbox({
       keyboardAppearance: null,
 
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.only(top: 7.h,left: 10),
         hintText: hintText,
         hintStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.normal,),
 
