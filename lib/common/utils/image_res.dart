@@ -20,4 +20,6 @@ class ImageRes {
   static const String reading = 'assets/images/reading.png';
   static const String man = 'assets/images/man.png';
   static const String boy = 'assets/images/boy.png';
+  static const String insertImage = 'assets/images/upload.jpg';
+  static const String gridImage = 'assets/images/gridImage.jpg';
 }

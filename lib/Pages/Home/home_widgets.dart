@@ -144,21 +144,11 @@ class HomeMenuBar extends StatelessWidget {
         //course item button
         Row(
           children: [
-            Container(
-
-              padding: EdgeInsets.only(
-                  left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
-              child: const text16Widget(text: "all", fontWeight: FontWeight.normal, )
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 30.w),
-              color: Colors.blue,
-              child: const text16Widget(text: "all", fontWeight: FontWeight.normal, ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 30.w),
-                child: const text16Widget(text: "all", fontWeight: FontWeight.normal, )
-            )
+            buttonContainer(),
+            SizedBox(width: 5.w,),
+            buttonContainer(text: "All Courses"),
+            SizedBox(width: 5.w,),
+            buttonContainer()
           ],
         )
       ],
@@ -170,19 +160,31 @@ class CourseItemGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        physics: const ScrollPhysics(),
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 40,
-            mainAxisSpacing: 40
+    return Container(
+      margin: EdgeInsets.only(right: 15.w),
+      child: GridView.builder(
+          physics: const ScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 15,
+              mainAxisSpacing: 1
 
-        ),
-        itemCount: 6,
-        itemBuilder: (_, int index){
-          return appImage();
-        }
+          ),
+          itemCount: 4,
+          itemBuilder: (_, int index){
+            return appImage();
+          }
+      ),
     );
   }
+}
+
+Widget buttonContainer({String text = "All"}){
+  return  Container(
+    padding: EdgeInsets.only(
+        left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
+    decoration:  BoxDecoration(color: AppColors.primaryElement,borderRadius: BorderRadius.circular(12)),
+    child:  text16Widget(text: text, fontWeight: FontWeight.normal, ),
+  );
 }

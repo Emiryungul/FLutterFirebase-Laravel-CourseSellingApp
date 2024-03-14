@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/image_res.dart';
 
 Widget appImage(
-    {String imagePath = ImageRes.reading,
+    {String imagePath = "",
       double width = 16,
       double height = 16}) {
   return Image.asset(
-    imagePath.isEmpty ? ImageRes.reading : imagePath,
+    imagePath.isEmpty ? ImageRes.gridImage : imagePath,
     width: width.w,
     height: height.h,
   );
