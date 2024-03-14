@@ -34,7 +34,6 @@ dependencies:
   flutter_riverpod: ^2.4.10
   dots_indicator: ^3.0.0
   riverpod_annotation: ^2.3.4
-  build_runner: ^2.4.7
   flutter_screenutil: ^5.9.0
   fluttertoast: ^8.1.0
   firebase_auth: ^4.13.0
@@ -46,12 +45,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.7
+  riverpod_generator: ^2.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -85,6 +81,10 @@ flutter:
     - assets/images/3rdimage.jpg
     - assets/images/actionbar_search.png
     - assets/images/aliuser_title_back_normal.9.png
+    - assets/images/foto1.jpg
+    - assets/images/foto2.jpg
+    - assets/images/foto3.jpg
+    - assets/icons/menu.png
 
 
 

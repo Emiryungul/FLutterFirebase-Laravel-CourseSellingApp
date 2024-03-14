@@ -48,7 +48,7 @@ class SignUp extends ConsumerStatefulWidget {
 
                  SizedBox(height: 30.h,),
 
-                Center(child: text16Widget(text: "Enter your required details below ", fontWeight: FontWeight.normal, textColor: Colors.black38,)),
+                const Center(child: text16Widget(text: "Enter your required details below ", fontWeight: FontWeight.normal, textColor: Colors.black38,)),
 
                  SizedBox(height: 50.h,),
 
@@ -107,7 +107,7 @@ class SignUp extends ConsumerStatefulWidget {
 
                 Container(
                     margin: const EdgeInsets.only(left: 5),
-                        child: text16Widget(
+                        child: const text16Widget(
                             text: 'You have to agree with our terms & condication '
                                 'to login',
                             fontWeight: FontWeight.normal,

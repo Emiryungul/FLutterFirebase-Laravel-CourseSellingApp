@@ -4,63 +4,185 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:riverpodapp/Pages/Home/controller/home_controller.dart';
 import 'package:riverpodapp/common/Widgets/box_shadow.dart';
+import 'package:riverpodapp/common/utils/colors.dart';
 
+import '../../common/Widgets/image_widgets.dart';
 import '../../common/Widgets/text_widgets.dart';
 import '../../global.dart';
 
-Widget helloText(){
-  return text24Widget(text: "Welcome", fontWeight: FontWeight.bold, textColor: Colors.grey);
-}
-Widget nameText(){
-  return text24Widget(
-      text: Global.storageService.getUserProfile().name!,
-      fontWeight: FontWeight.bold,
-      textColor: Colors.black
-  );
+
+class helloText extends StatelessWidget {
+  const helloText({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const text24Widget(
+        text: "Welcome",
+        fontWeight: FontWeight.bold,
+        textColor: Colors.grey
+    );
+  }
 }
 
+class nameText extends StatelessWidget {
+  const nameText({super.key});
 
-Widget bannerWidget({required WidgetRef ref}){
-  return Column(
-    children: [
-      SizedBox(
-        //padding: const EdgeInsets.only(left: 10),
-        width: 325.w,
-        height: 160.h,
-        child: PageView(
-          onPageChanged: (index){
-            ref.read(homeScreenBannerDotsProvider.notifier).setIndex(index);
-          },
-          children: [
-              _bannerContainer(imagePath: "assets/images/3rdimage.jpg"),
-              _bannerContainer(imagePath: "assets/images/3rdimage.jpg")
+  @override
+  Widget build(BuildContext context) {
+    return text24Widget(
+        text: Global.storageService.getUserProfile().name!,
+        fontWeight: FontWeight.bold,
+        textColor: Colors.black
+    );
+  }
+}
+
+class BannerWidget extends StatelessWidget {
+  final WidgetRef ref;
+  final PageController controller;
+  const BannerWidget({super.key, required this.ref, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          //padding: const EdgeInsets.only(left: 10),
+          width: 325.w,
+          height: 160.h,
+          child: PageView(
+            controller: controller,
+            onPageChanged: (index){
+              ref.read(homeScreenBannerDotsProvider.notifier).setIndex(index);
+            },
+            children: [
+              _bannerContainer(imagePath: "assets/images/foto1.jpg"),
+              _bannerContainer(imagePath: "assets/images/foto2.jpg"),
+              _bannerContainer(imagePath: "assets/images/foto3.jpg")
             ],
+          ),
         ),
-      ),
-      DotsIndicator(
-        position: ref.watch(homeScreenBannerDotsProvider),
-        dotsCount: 3,
-        mainAxisAlignment: MainAxisAlignment.center,
-        decorator: DotsDecorator(
-          size:  Size(9.0.w,9.0.w),
-          activeSize:  Size(24.0.w, 9.0.w),
-          activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        DotsIndicator(
+          position: ref.watch(homeScreenBannerDotsProvider),
+          dotsCount: 3,
+          mainAxisAlignment: MainAxisAlignment.center,
+          decorator: DotsDecorator(
+            size:  Size(7.0.w,7.0.w),
+            activeSize:  Size(24.0.w, 9.0.w),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+            activeColor: AppColors.primaryElement ,
+            //color: AppColors.primaryElement
+          ),
         ),
-      ),
-    ],
-  );
-
-
+      ],
+    );
+  }
 }
+
 
 Widget _bannerContainer({String? imagePath}){
   return Container(
       width: 325.w,
       height: 150.h,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(14.w),
         image: DecorationImage(image: AssetImage(imagePath!),
-          fit: BoxFit.cover
+          fit: BoxFit.cover,
+          
         ),
       )
   );
+}
+
+AppBar homeAppBar(){
+  return AppBar(
+    title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset("assets/icons/menu.png",width: 20.w,height: 20.h,),
+          GestureDetector(
+            child: Container(
+              width: 30.w,
+              height: 30.h,
+              decoration:  const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/icons/person(1).png",),
+                  fit: BoxFit.cover
+                )
+              ),
+            ),
+          )
+        ],
+      ),
+
+  );
+}
+
+class HomeMenuBar extends StatelessWidget {
+  const HomeMenuBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 15.h,),
+          child: Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const text16Widget(text: "Choose Your Course", fontWeight: FontWeight.bold,),
+              SizedBox(width: 145.w,),
+              GestureDetector(
+                child: const text16Widget(text: 'See All', fontWeight: FontWeight.bold, textColor: Colors.black38,)
+              ),
+              SizedBox(width: 15.w,)
+            ],
+          ),
+        ),
+        SizedBox(height: 20.h,),
+        //course item button
+        Row(
+          children: [
+            Container(
+
+              padding: EdgeInsets.only(
+                  left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
+              child: const text16Widget(text: "all", fontWeight: FontWeight.normal, )
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 30.w),
+              color: Colors.blue,
+              child: const text16Widget(text: "all", fontWeight: FontWeight.normal, ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 30.w),
+                child: const text16Widget(text: "all", fontWeight: FontWeight.normal, )
+            )
+          ],
+        )
+      ],
+    );
+  }
+}
+class CourseItemGrid extends StatelessWidget {
+  const CourseItemGrid({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        physics: const ScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 40,
+            mainAxisSpacing: 40
+
+        ),
+        itemCount: 6,
+        itemBuilder: (_, int index){
+          return appImage();
+        }
+    );
+  }
 }

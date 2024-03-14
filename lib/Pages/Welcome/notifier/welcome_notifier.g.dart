@@ -6,7 +6,7 @@ part of 'welcome_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$indexDotHash() => r'e407c19e35a91274d4ef23f17c8ec0cedde72385';
+String _$indexDotHash() => r'd6ca827c77ff6a4d763c2dc357285caca92870d1';
 
 /// See also [IndexDot].
 @ProviderFor(IndexDot)
@@ -21,4 +21,4 @@ final indexDotProvider = AutoDisposeNotifierProvider<IndexDot, int>.internal(
 
 typedef _$IndexDot = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

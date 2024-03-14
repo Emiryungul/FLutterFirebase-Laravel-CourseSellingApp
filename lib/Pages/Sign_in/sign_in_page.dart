@@ -44,7 +44,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
               children: [
                 thirdPartyLogin(),
                 //SizedBox(height: 5,),
-                Center(child: text16Widget(text: "Or use your email to login", fontWeight: FontWeight.normal, textColor: Colors.black38,)),
+                const Center(child: text16Widget(text: "Or use your email to login", fontWeight: FontWeight.normal, textColor: Colors.black38,)),
 
                  SizedBox(height: 50.h,),
 

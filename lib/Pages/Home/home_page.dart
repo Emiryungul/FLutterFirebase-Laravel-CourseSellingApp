@@ -5,15 +5,30 @@ import 'package:riverpodapp/Pages/Sign_in/sign_in_widgets.dart';
 
 
 import '../../common/Widgets/search_bar_widget.dart';
+import 'controller/home_controller.dart';
 import 'home_widgets.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+
+  late PageController _controller ;
+  @override
+  void didChangeDependencies() {
+    _controller = PageController(initialPage: ref.watch(homeScreenBannerDotsProvider));
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context ) {
     return Scaffold(
-      appBar: myAppbar(title: "Home Page",),
+      backgroundColor: Colors.white,
+      appBar:homeAppBar(),
       body: Padding(
         padding: EdgeInsets.only(left: 15.w,),
         child: SingleChildScrollView(
@@ -21,12 +36,14 @@ class HomePage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              helloText(),
-              nameText(),
+              const helloText(),
+              const nameText(),
               SizedBox(height: 15.h,),
               searchBar(),
               SizedBox(height: 10.h,),
-              bannerWidget(ref: ref)
+              BannerWidget(ref: ref,controller: _controller),
+              const HomeMenuBar(),
+              const CourseItemGrid()
 
             ],
           ),
@@ -34,6 +51,4 @@ class HomePage extends ConsumerWidget {
       ),
     );
   }
-
-
 }
