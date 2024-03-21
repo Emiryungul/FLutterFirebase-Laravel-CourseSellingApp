@@ -47,6 +47,7 @@ class SignUpController{
             print(credential);
           }
 
+
           if (credential.user != null) {
             await credential.user?.sendEmailVerification();
             await credential.user?.updateDisplayName(name);
