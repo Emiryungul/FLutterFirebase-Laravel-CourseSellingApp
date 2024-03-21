@@ -100,10 +100,8 @@ class SignInController {
 
   void asyncPostAllData(LoginRequestEntity loginRequestEntity){
 
-    //have local storage
     try{
-      //var navigator = Navigator.of(ref.context);
-      //try to remember user info
+      //kullanıcı bilgilerini hatırla
       Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode({
         'name':'Emirhan', 'email':'emryng2002@gmail.com', 'age':34
       }));

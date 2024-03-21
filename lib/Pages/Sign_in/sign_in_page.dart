@@ -30,7 +30,6 @@ class _SignInPageState extends ConsumerState<SignInPage> {
   Widget build(BuildContext context ) {
     final signInProvider = ref.watch(signInNotifierProvider);
     final loader = ref.watch(appLoaderProvider);
-    print(signInProvider.email);
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -45,9 +44,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                 thirdPartyLogin(),
                 //SizedBox(height: 5,),
                 const Center(child: text16Widget(text: "Or use your email to login", fontWeight: FontWeight.normal, textColor: Colors.black38,)),
-
                  SizedBox(height: 50.h,),
-
                 Center(
                   child: appTextField(
                       textEditingController: _controller.emailController,
@@ -60,7 +57,6 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                   ),
                 ),
                  SizedBox(height: 30.h,),
-
                 Center(
                   child: appTextField(
                       textEditingController: _controller.passwordController,
@@ -85,7 +81,6 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                       func: (){
                         _controller.handleSignIn();
                       }
-
                     )
                 ),
                  SizedBox(height: 30.h,),
@@ -99,8 +94,6 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                       }
                     )
                 )
-
-
               ],
             ),
           )

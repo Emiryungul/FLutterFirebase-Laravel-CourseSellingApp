@@ -125,9 +125,6 @@ class SignUp extends ConsumerStatefulWidget {
 
                     )
                 ),
-
-
-
               ],
             ),
           )

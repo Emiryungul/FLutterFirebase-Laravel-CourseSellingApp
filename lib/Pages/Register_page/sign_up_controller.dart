@@ -33,8 +33,8 @@ class SignUpController{
       if(state.password!=state.rePassword){
         toastInfo("Your rePassword is not same ");
       }
-      // true oldugu zaman yükleme ekranını göster
 
+      // true oldugu zaman yükleme ekranını göster
 
       ref.read(appLoaderProvider.notifier).setLoaderValue(true);
       Future.delayed(const Duration(seconds: 2),() async {
@@ -50,8 +50,6 @@ class SignUpController{
           if (credential.user != null) {
             await credential.user?.sendEmailVerification();
             await credential.user?.updateDisplayName(name);
-            //get server photo url
-            //set user photo url
 
           }
         }on FirebaseAuthException catch(e) {
@@ -63,8 +61,6 @@ class SignUpController{
               toastInfo('No user found for that email.');
             }
         }
-
-
         // buraya geldiginde ekran yüklemesini durdur
         ref.read(appLoaderProvider.notifier).setLoaderValue(false);
 
