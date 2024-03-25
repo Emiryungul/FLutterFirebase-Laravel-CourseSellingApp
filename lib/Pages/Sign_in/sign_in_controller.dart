@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpodapp/Pages/Sign_in/notifier/sign_in_notifier.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:riverpodapp/Pages/Sign_in/repo/sign_in_repo.dart';
 import 'package:riverpodapp/common/entities/entities.dart';
 import 'package:riverpodapp/common/global_loader/global_loader.dart';
 import 'package:riverpodapp/main.dart';
@@ -75,7 +76,6 @@ class SignInController {
         asyncPostAllData(loginRequestEntity);
 
         if (kDebugMode) {
-          print("user logged in");
         }
       }else{
         toastInfo("login error");
@@ -98,22 +98,26 @@ class SignInController {
     ref.read(appLoaderProvider.notifier).setLoaderValue(false);
   }
 
-  void asyncPostAllData(LoginRequestEntity loginRequestEntity){
+  void asyncPostAllData(LoginRequestEntity loginRequestEntity) async{
 
+  var result  = await SignInRepo.login(params: LoginRequestEntity());
+  if(result.code==200){
     try{
       //kullanıcı bilgilerini hatırla
-      Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode({
-        'name':'Emirhan', 'email':'emryng2002@gmail.com', 'age':34
-      }));
-      Global.storageService.setString(AppConstants.STORAGE_USER_TOKEN_KEY, "123456");
+      Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data));
+      Global.storageService.setString(AppConstants.STORAGE_USER_TOKEN_KEY, jsonEncode(result.data?.avatar));
 
-       navKey.currentState?.pushNamedAndRemoveUntil("/navbar", (route) => false);
+      navKey.currentState?.pushNamedAndRemoveUntil("/navbar", (route) => false);
 
     }catch(e){
       if (kDebugMode) {
         print(e.toString());
       }
     }
+  }
+
+
+
 
     //redirect to new page
   }

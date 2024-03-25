@@ -27,6 +27,9 @@ class StorageService{
   bool getDeviceFirstOpen(){
     return _pref?.getBool(AppConstants.STORAGE_DEVICE_FIRST_LOGIN_KEY)??false;
   }
+  String getUserToken(){
+    return _pref?.getString(AppConstants.STORAGE_USER_PROFILE_KEY)??"";
+  }
 
   //Eğer uygulamaya girilmiş ise anahtar Null değildir eğer null değilse truedur yada false dur
   bool isLoggedIn(){
@@ -39,8 +42,6 @@ class StorageService{
     var userProfile = UserItem.fromJson(profileJson);
     return userProfile;
     }
-
-
 
 
   }

@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpodapp/Pages/Register_page/notifier/register_notifier.dart';
+import 'package:riverpodapp/Pages/Register_page/repo/sign_up_repo.dart';
 import 'package:riverpodapp/common/Widgets/toast_messages.dart';
 import 'package:riverpodapp/common/global_loader/global_loader.dart';
 
@@ -37,12 +39,11 @@ class SignUpController{
       // true oldugu zaman yükleme ekranını göster
 
       ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+      var context = Navigator.of(ref.context);
       Future.delayed(const Duration(seconds: 2),() async {
         try {
-          final credential = await FirebaseAuth.instance
-              .createUserWithEmailAndPassword(
-              email: email, password: password
-          );
+          final credential = await SignUpRep.firebaseSignUp(email, password);
+
           if (kDebugMode) {
             print(credential);
           }
@@ -51,6 +52,11 @@ class SignUpController{
           if (credential.user != null) {
             await credential.user?.sendEmailVerification();
             await credential.user?.updateDisplayName(name);
+            String photoUrl = "uploads/default.png";
+            await credential.user?.updatePhotoURL(photoUrl);
+
+            toastInfo(" email has been sent to verify your account. Please open that email and confirm your identity");
+            context.pop();
 
           }
         }on FirebaseAuthException catch(e) {

@@ -81,7 +81,7 @@ class SignUp extends ConsumerStatefulWidget {
                       text: "Password",
                       hintText: 'Enter your Password Address here',
                       iconName: "assets/icons/lock.png",
-                      obscureText: false,
+                      obscureText: true,
                       func: (value)=>ref.read(registerNotifierProvider.notifier).onUserPasswordChange(value)
                   ),
                 ),

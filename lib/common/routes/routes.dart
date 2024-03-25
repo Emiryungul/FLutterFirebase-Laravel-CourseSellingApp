@@ -21,7 +21,7 @@ class AppPages {
 
   static MaterialPageRoute generateRouteSettings(RouteSettings settings) {
     if (kDebugMode) {
-      print("clicked route is ${settings.name}");
+
     }
     if(settings.name!=null){
 
@@ -46,7 +46,6 @@ class AppPages {
 
         }else{
           if (kDebugMode) {
-            print('App ran first time');
           }
           return MaterialPageRoute(
               builder: (_) => result.first.page,

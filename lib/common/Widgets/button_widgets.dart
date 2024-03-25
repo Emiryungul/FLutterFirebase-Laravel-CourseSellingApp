@@ -9,7 +9,7 @@ import '../utils/colors.dart';
 Widget appButton({
   double width = 325,
   double height = 45,
-  String buttonName = "",
+  String buttonName = "Button Name",
   bool isLogin = true,
   BuildContext? context,
   void Function()? func
