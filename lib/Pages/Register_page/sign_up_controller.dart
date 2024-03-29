@@ -8,73 +8,80 @@ import 'package:riverpodapp/common/Widgets/toast_messages.dart';
 import 'package:riverpodapp/common/global_loader/global_loader.dart';
 
 class SignUpController{
-  final  WidgetRef ref;
+  final WidgetRef ref;
 
-    SignUpController({required this.ref});
+  SignUpController({required this.ref});
 
-    Future<void> handleSignUp() async {
-      var state = ref.read(registerNotifierProvider);
+  Future<void> handleSignUp() async {
+    var state = ref.read(registerNotifierProvider);
 
-      String name = state.userName;
-      String email = state.email;
-      String password = state.password;
-      String rePassword = state.rePassword;
+    String name = state.userName;
+    String email = state.email;
+    String password = state.password;
+    String rePassword = state.rePassword;
 
-
-
-      if(state.userName.isEmpty||name.isEmpty){
-        toastInfo("your name is empty");
-      }
-      if(state.userName.length<6||name.length<6){
-        toastInfo("your name is too short");
-      }
-      if(state.email.isEmpty||email.isEmpty){
-        toastInfo("your name is empty");
-      }
-
-      if(state.password!=state.rePassword){
-        toastInfo("Your rePassword is not same ");
-      }
-
-      // true oldugu zaman yükleme ekranını göster
-
-      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
-      var context = Navigator.of(ref.context);
-      Future.delayed(const Duration(seconds: 2),() async {
-        try {
-          final credential = await SignUpRep.firebaseSignUp(email, password);
-
-          if (kDebugMode) {
-            print(credential);
-          }
-
-
-          if (credential.user != null) {
-            await credential.user?.sendEmailVerification();
-            await credential.user?.updateDisplayName(name);
-            String photoUrl = "uploads/default.png";
-            await credential.user?.updatePhotoURL(photoUrl);
-
-            toastInfo(" email has been sent to verify your account. Please open that email and confirm your identity");
-            context.pop();
-
-          }
-        }on FirebaseAuthException catch(e) {
-            if(e.code=='weak-password'){
-              toastInfo("Your password is too weak");
-            }else if (e.code == 'email-already-in-use') {
-              toastInfo('The account already exists for that email.');
-            }else if(e.code == 'user-not-found') {
-              toastInfo('No user found for that email.');
-            }
-        }
-        // buraya geldiginde ekran yüklemesini durdur
-        ref.read(appLoaderProvider.notifier).setLoaderValue(false);
-
-      });
-
-
-
-
+    if(state.userName.isEmpty || name.isEmpty){
+      toastInfo("Your name is empty");
+      return;
     }
+
+    if(state.userName.length<6 || name.length<6){
+      toastInfo("Your name is too short");
+      return;
+    }
+
+    if(state.email.isEmpty || email.isEmpty){
+      toastInfo("Your email is empty");
+      return;
+    }
+
+    if((state.password.isEmpty||state.rePassword.isEmpty)||password.isEmpty||rePassword.isEmpty){
+      toastInfo("Your password is empty");
+      return;
+    }
+
+    //Show the loading screen until the data is pushed to the backend
+    ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
+    var context = Navigator.of(ref.context);
+    try{
+
+      final credential = await SignUpRep.firebaseSignUp(email, password);
+
+      if (kDebugMode) {
+        print(credential);
+      }
+
+      if(credential.user!=null){
+
+        await credential.user?.sendEmailVerification();
+        await credential.user?.updateDisplayName(name);
+        String photoUrl = "uploads/default.png";
+        await credential.user?.updatePhotoURL(photoUrl);
+
+        toastInfo("Asn email has been sent to verify your account. Please open that email and confirm your identity");
+        context.pop();
+      }
+
+
+    }on FirebaseAuthException catch(e){
+      if(e.code=='weak-password'){
+        toastInfo("This password is too weak");
+      }else if(e.code=='email-already-in-use'){
+        toastInfo("This email address has already been registered");
+      }else if(e.code=='user-not-found'){
+        toastInfo("User not found");
+      }
+      print(e.code);
+    }catch(e){
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+    //show the register page
+    ref.watch(appLoaderProvider.notifier).setLoaderValue(false);
+
+  }
+
+
 }

@@ -11,7 +11,7 @@ Widget searchBar(){
       Container(
         width: 290.w,
         height: 30.h,
-        decoration: appShadowBox(border: Border.all(color: AppColors.primaryFourElementText),color: Colors.white),
+        decoration: appBoxShadow(color: Colors.white),
         child: Row(
           children: [
             SizedBox(width: 10.w,),
@@ -31,7 +31,7 @@ Widget searchBar(){
           padding: EdgeInsets.all(5.w),
           width: 35.w,
           height: 30.h,
-          decoration: appShadowBox(border: Border.all(color: AppColors.primaryFourElementText),color: AppColors.primaryElement),
+          decoration: appBoxShadow(color: AppColors.primaryElement),
           child: Image.asset("assets/icons/options.png"),
         ),
       )

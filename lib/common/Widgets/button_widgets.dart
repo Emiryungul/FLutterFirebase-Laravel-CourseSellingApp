@@ -20,9 +20,9 @@ Widget appButton({
       width: width.w,
       height: height.h,
       //isLogin true then send primary color else send white color
-      decoration: appShadowBox(
+      decoration: appBoxShadow(
           color: isLogin ? AppColors.primaryElement : Colors.white,
-          border: Border.all(color: AppColors.primaryFourElementText)),
+          ),
       child: Center(
           child: text16Widget(
               text: buttonName,

@@ -16,20 +16,19 @@ class SignInPage extends ConsumerStatefulWidget {
   @override
   ConsumerState<SignInPage> createState() => _SignInPageState();
 }
-
-
 class _SignInPageState extends ConsumerState<SignInPage> {
   late SignInController _controller;
 
   @override
-  void initState() {
-    _controller = SignInController(ref);
-    super.initState();
+  void didChangeDependencies() {
+    _controller = SignInController();
+    super.didChangeDependencies();
   }
   @override
   Widget build(BuildContext context ) {
     final signInProvider = ref.watch(signInNotifierProvider);
     final loader = ref.watch(appLoaderProvider);
+
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -79,7 +78,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                     child: appButton(
                       buttonName: " Log In ",
                       func: (){
-                        _controller.handleSignIn();
+                        _controller.handleSignIn(ref);
                       }
                     )
                 ),

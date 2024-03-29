@@ -1,9 +1,5 @@
-import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
-
-import '../../../common/entities/user.dart';
-import '../../../common/utils/http.dart';
 
 class SignUpRep{
 

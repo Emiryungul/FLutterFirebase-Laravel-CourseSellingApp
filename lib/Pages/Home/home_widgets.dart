@@ -5,9 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:riverpodapp/Pages/Home/controller/home_controller.dart';
 import 'package:riverpodapp/common/Widgets/box_shadow.dart';
 import 'package:riverpodapp/common/utils/colors.dart';
+import 'package:riverpodapp/common/utils/constants.dart';
 
 import '../../common/Widgets/image_widgets.dart';
 import '../../common/Widgets/text_widgets.dart';
+import '../../common/utils/image_res.dart';
 import '../../global.dart';
 
 
@@ -88,35 +90,37 @@ Widget _bannerContainer({String? imagePath}){
         borderRadius: BorderRadius.circular(14.w),
         image: DecorationImage(image: AssetImage(imagePath!),
           fit: BoxFit.cover,
-          
         ),
       )
   );
 }
 
-AppBar homeAppBar(){
+AppBar homeAppBar(WidgetRef ref) {
+  var profileState = ref.watch(homeUserProfileProvider);
   return AppBar(
-    title: Row(
+    title: Container(
+      margin: EdgeInsets.only(left: 7.w, right: 7.w),
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset("assets/icons/menu.png",width: 20.w,height: 20.h,),
-          GestureDetector(
-            child: Container(
-              width: 30.w,
-              height: 30.h,
-              decoration:  const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/icons/person(1).png",),
-                  fit: BoxFit.cover
-                )
+          appImage(width: 18.w, height: 12.h, imagePath: ImageRes.menu),
+          profileState.when(
+              data: (value) => GestureDetector(
+                child: const AppBoxDecorationImage(
+                  imagePath:
+                  "${AppConstants.SERVER_API_URL}${"uploads/default.png"}",
+                ),
               ),
-            ),
-          )
+              error: (err, stack) => appImage(
+                  width: 18.w, height: 12.h, imagePath: ImageRes.profile),
+              loading: () => Container())
         ],
       ),
-
+    ),
   );
 }
+
+
 
 class HomeMenuBar extends StatelessWidget {
   const HomeMenuBar({Key? key}) : super(key: key);

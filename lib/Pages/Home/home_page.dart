@@ -28,7 +28,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context ) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:homeAppBar(),
+      appBar:homeAppBar(ref),
       body: Padding(
         padding: EdgeInsets.only(left: 15.w,),
         child: SingleChildScrollView(

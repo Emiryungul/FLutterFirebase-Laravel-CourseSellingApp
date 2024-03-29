@@ -16,15 +16,14 @@ import '../../global.dart';
 
 class SignInController {
 
-  WidgetRef ref;
+   late WidgetRef ref;
 
-  SignInController(this.ref);
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  Future<void> handleSignIn() async {
-    var state = ref.read(signInNotifierProvider);
+  Future<void> handleSignIn(WidgetRef ref) async {
+    var state = ref.watch(signInNotifierProvider);
     String email = state.email;
     String password = state.password;
 
@@ -44,8 +43,7 @@ class SignInController {
 
     try {
 
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email, password: password);
+      final credential = await SignInRepo.firebaseSignIn(email, password);
 
 
       if(credential.user==null){
@@ -71,11 +69,11 @@ class SignInController {
         loginRequestEntity.avatar = photoUrl;
         loginRequestEntity.name = displayName;
         loginRequestEntity.email = email;
-        loginRequestEntity. open_id = id;
+        loginRequestEntity.open_id = id;
         loginRequestEntity.type = 1;
         asyncPostAllData(loginRequestEntity);
-
         if (kDebugMode) {
+          print("user logged in");
         }
       }else{
         toastInfo("login error");
@@ -84,10 +82,8 @@ class SignInController {
       if(e.code=='user-not-found'){
         toastInfo("User not found");
       }else if(e.code=='wrong-password'){
-        String error = "your password is wrong";
-        toastInfo(error);
+        toastInfo("Your password is wrong");
       }
-
 
     }catch(e){
       if (kDebugMode) {
@@ -98,28 +94,31 @@ class SignInController {
     ref.read(appLoaderProvider.notifier).setLoaderValue(false);
   }
 
-  void asyncPostAllData(LoginRequestEntity loginRequestEntity) async{
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
 
-  var result  = await SignInRepo.login(params: LoginRequestEntity());
-  if(result.code==200){
-    try{
-      //kullanıcı bilgilerini hatırla
-      Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data));
-      Global.storageService.setString(AppConstants.STORAGE_USER_TOKEN_KEY, jsonEncode(result.data?.avatar));
+    //we need to talk to server
+    var result = await SignInRepo.login(params: loginRequestEntity);
+    if(result.code==200){
+      //have local storage
+      try{
+        //try to remember user info
+        Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data));
+        Global.storageService.setString(AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
 
-      navKey.currentState?.pushNamedAndRemoveUntil("/navbar", (route) => false);
+        navKey.currentState?.pushNamedAndRemoveUntil("/navbar", (route) => false);
 
-    }catch(e){
-      if (kDebugMode) {
-        print(e.toString());
+      }catch(e){
+        if (kDebugMode) {
+          print(e.toString());
+        }
       }
+
+      //redirect to new page
+    }else{
+      toastInfo("Login error");
     }
-  }
 
 
-
-
-    //redirect to new page
   }
 
 

@@ -69,7 +69,7 @@ Widget appTextField(
           width: 325.w,
           height: 40.h,
 
-          decoration: appTextFieldShadowBox(),
+          decoration: appBoxDecorationTextField(),
 
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

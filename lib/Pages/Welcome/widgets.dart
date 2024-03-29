@@ -54,8 +54,7 @@ Widget _nextButton(int index,PageController controller, BuildContext context){
     child: Container(
       width: 300,
       height: 55,
-      decoration: appShadowBox(color: AppColors.primaryElement, border: Border.all(color: AppColors.primaryFourElementText),
-    ),
+      decoration: appBoxShadow(),
       child: Center(child: text16Widget(text: index<3 ? "next"  : "Get Started", fontWeight: FontWeight.bold, textColor: Colors.black)),
     ),
   );

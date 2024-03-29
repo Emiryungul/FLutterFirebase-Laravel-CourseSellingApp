@@ -19,7 +19,7 @@ class NavBarPage extends ConsumerWidget {
       bottomNavigationBar: Container(
         width: 340.w,
         height: 55.h,
-        decoration: appShadowBox(color: Colors.black, border: const Border()),
+        decoration: appBoxShadow(color: Colors.black, ),
         child: BottomNavigationBar(
           items: bottomTabs,
           elevation: 1,
