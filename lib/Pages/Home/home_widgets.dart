@@ -65,6 +65,7 @@ class BannerWidget extends StatelessWidget {
           ),
         ),
         DotsIndicator(
+
           position: ref.watch(homeScreenBannerDotsProvider),
           dotsCount: 3,
           mainAxisAlignment: MainAxisAlignment.center,
