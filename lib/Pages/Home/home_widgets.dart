@@ -59,6 +59,7 @@ class BannerWidget extends StatelessWidget {
             },
             children: [
 
+
               _bannerContainer(imagePath: "assets/images/foto1.jpg"),
               _bannerContainer(imagePath: "assets/images/foto2.jpg"),
               _bannerContainer(imagePath: "assets/images/foto3.jpg")
