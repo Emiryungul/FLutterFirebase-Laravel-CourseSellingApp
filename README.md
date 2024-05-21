@@ -1,4 +1,4 @@
-# riverpodapp
+# CourseSellingApp
 
 A new Flutter project.
 
