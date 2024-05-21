@@ -18,14 +18,15 @@ class HttpUtil {
         receiveTimeout: const Duration(seconds: 5),
         headers: {},
         contentType: "application/json: charset=utf-8",
-        responseType: ResponseType.json);
+        responseType: ResponseType.json
+    );
     dio = Dio(options);
 
     dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
       // print("app request data ${options.data}");
       return handler.next(options);
     }, onResponse: (response, handler) {
-      print("app response data ${response.data}");
+
       return handler.next(response);
     }, onError: (DioException e, handler) {
 

@@ -35,7 +35,6 @@ class text16Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text
-
       (
         text,
         textAlign: TextAlign.center,
@@ -58,7 +57,6 @@ class text9Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Text
-
       (
         text,
         textAlign: TextAlign.center,
@@ -75,7 +73,6 @@ class text9Widget extends StatelessWidget {
 Widget textUnderline({String text="Forgot Password ?"}){
   return GestureDetector(
     onTap: (){
-
     },
     child:  Text(
       text,

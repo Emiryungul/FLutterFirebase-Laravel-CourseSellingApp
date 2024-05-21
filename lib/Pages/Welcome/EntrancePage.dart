@@ -60,6 +60,7 @@ final PageController _controller =PageController();
                         index: 3,
                         controller: _controller, context: context),
                   ],
+
                 ),
                 Positioned(
                   bottom: 190.h,
